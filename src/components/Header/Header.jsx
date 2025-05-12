@@ -17,7 +17,7 @@ const Header = () => {
               }`
             }
             data-testid="category-link"
-            activeclassName="active"
+            activeclassname="active"
           >
             Women
           </NavLink>
@@ -31,7 +31,7 @@ const Header = () => {
               }`
             }
             data-testid="category-link"
-            activeclassName="active"
+            activeclassname="active"
           >
             Men
           </NavLink>
@@ -45,7 +45,7 @@ const Header = () => {
               }`
             }
             data-testid="category-link"
-            activeclassName="active"
+            activeclassname="active"
           >
             Kids
           </NavLink>
