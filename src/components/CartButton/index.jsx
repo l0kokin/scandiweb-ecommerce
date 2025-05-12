@@ -1,11 +1,1 @@
-import Cart from "../icons/Cart";
-
-const CartButton = () => {
-  return (
-    <button className="cursor-pointer">
-      <Cart />
-    </button>
-  );
-};
-
-export default CartButton;
+export { default as CartButton } from "./CartButton";
