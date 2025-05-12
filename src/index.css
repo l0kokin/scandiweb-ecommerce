@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: oklch(0.24 0.0065 258.36);
+  --color-green: oklch(0.77 0.1566 149.74);
+}
+
 body {
   font-family: "Raleway", sans-serif;
-  color: #1d1f22;
 }
