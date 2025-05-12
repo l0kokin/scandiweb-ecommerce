@@ -1,10 +1,50 @@
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
+import ProductCard from "../../components/Product/ProductCard";
+import { Loader } from "../../Loader";
+import dummyProducts from "./dummyData";
 
 const Home = () => {
+  const { category } = useParams();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const categoryKey = category || "all";
+    setProducts(dummyProducts[categoryKey] || []);
+    setLoading(false);
+  }, [category]);
+
+  if (loading) {
+    return (
+      <>
+        <Header />
+        <Loader />
+      </>
+    );
+  }
+
   return (
     <>
       <Header />
-      <h1>this is home page</h1>
+      <div className="container mx-auto py-8">
+        <h1 className="text-5xl mt-20 capitalize">
+          {category ? `${category}` : "All Products"}
+        </h1>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              data-testid={`product-${product.name
+                .toLowerCase()
+                .replace(/\s+/g, "-")}`}
+            />
+          ))}
+        </div>
+      </div>
     </>
   );
 };
