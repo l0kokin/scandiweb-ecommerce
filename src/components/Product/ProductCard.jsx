@@ -44,7 +44,7 @@ const ProductCard = ({ product, ...props }) => {
           )}
         </div>
         <div className="mt-6 text-lg text-black">
-          <h3 className="font-light">{`${product.brand} ${product.name}`}</h3>
+          <h3 className="font-light">{product.name}</h3>
           <p className="font-medium">{`${price.currency}${price.amount.toFixed(
             2
           )}`}</p>

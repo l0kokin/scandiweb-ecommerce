@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Header from "../../components/Header/Header";
-import ProductCard from "../../components/Product/ProductCard";
 import { Loader } from "../../Loader";
 import dummyProducts from "./dummyData";
+import { Header } from "../../components/Header";
+import { ProductCard } from "../../components/Product";
 
 const Home = () => {
   const { category } = useParams();
@@ -29,7 +29,7 @@ const Home = () => {
     <>
       <Header />
       <div className="container mx-auto py-8">
-        <h1 className="text-5xl mt-20 capitalize">
+        <h1 className="text-5xl capitalize">
           {category ? `${category}` : "All Products"}
         </h1>
 

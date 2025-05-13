@@ -4,7 +4,7 @@ import { CartButton } from "../CartButton";
 
 const Header = () => {
   return (
-    <header className="bg-white pt-6">
+    <header className="bg-white pt-6 mb-20">
       <div className="container mx-auto px-4 flex justify-between items-center">
         <nav className="flex">
           <NavLink
