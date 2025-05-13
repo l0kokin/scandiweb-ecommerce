@@ -1,14 +1,1 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
-const Home = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    navigate("/category/all");
-  }, [navigate]);
-
-  return null;
-};
-
-export default Home;
+export { default as Home } from "./Home";
