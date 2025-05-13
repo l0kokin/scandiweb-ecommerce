@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import dummyData from "../Home/dummyData";
 import { Header } from "../../components/Header";
+import { Loader } from "../../Loader";
+import { LeftArrow, RightArrow } from "../../components/icons";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -48,7 +50,12 @@ const ProductDetails = () => {
   };
 
   if (loading || !product) {
-    return <div className="container mx-auto py-8 text-center">Loading...</div>;
+    return (
+      <>
+        <Header />
+        <Loader />
+      </>
+    );
   }
 
   const price = product.prices[0];
@@ -60,10 +67,10 @@ const ProductDetails = () => {
     <>
       <Header />
 
-      <div className="container mx-auto py-8 px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-28">
+      <div className="mx-25 py-8 px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-y-28 lg:gap-10">
           {/* Gallery */}
-          <div className="flex flex-col md:flex-row">
+          <section className="lg:col-span-2 flex flex-col md:flex-row">
             <div className="flex md:flex-col order-2 md:order-1 space-x-2 md:space-x-10 md:space-y-5 mr-0 md:mr-4">
               {product.gallery.map((image, index) => (
                 <button
@@ -85,13 +92,39 @@ const ProductDetails = () => {
               ))}
             </div>
 
-            <div className="relative w-full order-1 md:order-2 aspect-square bg-gray-100">
+            <div className="relative md:order-2">
               <img
                 src={product.gallery[currentImageIndex]}
                 alt={product.name}
                 className="w-full h-full object-cover"
                 data-testid="product-gallery"
               />
+              <button
+                onClick={() =>
+                  setCurrentImageIndex(
+                    (prevIndex) =>
+                      (prevIndex - 1 + product.gallery.length) %
+                      product.gallery.length
+                  )
+                }
+                className="absolute px-3 py-2 bg-gray-dark top-1/2 left-2 transform -translate-y-1/2 z-10"
+                aria-label="Previous image"
+              >
+                <LeftArrow />
+              </button>
+
+              <button
+                onClick={() =>
+                  setCurrentImageIndex(
+                    (prevIndex) => (prevIndex + 1) % product.gallery.length
+                  )
+                }
+                className="absolute px-3 py-2 bg-gray-dark top-1/2 right-2 transform -translate-y-1/2 z-10"
+                aria-label="Next image"
+              >
+                <RightArrow />
+              </button>
+
               {!product.inStock && (
                 <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-70">
                   <span className="text-3xl text-gray-text absolute">
@@ -106,10 +139,10 @@ const ProductDetails = () => {
                 </div>
               )}
             </div>
-          </div>
+          </section>
 
           {/* Details */}
-          <div className="w-74">
+          <section className="lg:col-span-1 w-74">
             <h1 className="text-3xl font-semibold mb-8">{product.name}</h1>
 
             {product.attributes.map((attribute) => (
@@ -189,7 +222,7 @@ const ProductDetails = () => {
                 __html: product.description,
               }}
             />
-          </div>
+          </section>
         </div>
       </div>
     </>

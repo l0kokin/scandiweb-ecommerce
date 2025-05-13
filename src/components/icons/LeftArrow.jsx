@@ -10,9 +10,9 @@ function LeftArrow() {
       <path
         d="M8.96873 1.16618L1.53955 8.58748L8.96873 16.0088"
         stroke="white"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

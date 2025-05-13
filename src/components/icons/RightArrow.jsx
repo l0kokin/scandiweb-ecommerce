@@ -10,9 +10,9 @@ function RightArrow() {
       <path
         d="M1 1.09158L8.5 8.58363L1 16.0757"
         stroke="white"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
