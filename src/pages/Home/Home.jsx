@@ -29,7 +29,7 @@ const Home = () => {
     <>
       <Header />
       <div className="container mx-auto py-8">
-        <h1 className="text-5xl mt-20 capitalize">
+        <h1 className="text-5xl capitalize">
           {category ? `${category}` : "All Products"}
         </h1>
 
