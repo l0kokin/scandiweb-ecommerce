@@ -1,4 +1,4 @@
-import Sweater from "../../assets/images/sweater.png";
+import Sweater from "../../assets/images/Image.png";
 
 // dummy data that I will get rid of
 const dummyProducts = {

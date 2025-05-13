@@ -24,20 +24,20 @@ const ProductCard = ({ product, ...props }) => {
       {...props}
     >
       <Link to={`/product/${product.id}`} className="block">
-        <div className="bg-gray-100 aspect-square flex items-center justify-center relative">
+        <div className="aspect-square flex items-center justify-center relative">
           <img
             src={product.gallery[0]}
             alt={product.name}
             className="w-full h-full object-cover"
           />
           {!product.inStock && (
-            <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-70">
+            <div className="absolute inset-0 flex items-center justify-center bg-gray bg-opacity-70">
               <img
                 src={product.gallery[0]}
                 alt={product.name}
                 className="w-full h-full object-cover"
               />
-              <span className="text-xl font-bold text-gray-800 absolute">
+              <span className="text-3xl text-black leading-[1.6] absolute uppercase">
                 OUT OF STOCK
               </span>
             </div>
@@ -53,7 +53,7 @@ const ProductCard = ({ product, ...props }) => {
 
       {product.inStock && isHovered && (
         <button
-          className="absolute bottom-24 right-6 bg-green text-white rounded-full opacity-100 transition-opacity p-3"
+          className="absolute bottom-18 right-6 bg-green text-white rounded-full opacity-100 transition-opacity p-[14px]"
           onClick={handleAddToCart}
           data-testid="quick-shop-btn"
         >
