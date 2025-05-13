@@ -1,6 +1,10 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 
 @theme {
+  --font-raleway: "Raleway", sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+
   --color-primary: oklch(0.24 0.0065 258.36);
   --color-green: oklch(0.77 0.1566 149.74);
   --color-black: oklch(0.24 0.0065 258.36);
