@@ -72,7 +72,7 @@ const ProductDetails = () => {
           <ProductGallery product={product} />
 
           {/* Details */}
-          <section className="lg:col-span-1 w-74">
+          <section className="lg:col-span-1 w-74 min-h-[34rem]">
             <h1 className="text-3xl font-semibold mb-8">{product.name}</h1>
 
             {product.attributes.map((attribute) => (
