@@ -1,52 +1,18 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import dummyData from "../Home/dummyData";
 import { Header } from "../../components/Header";
 import { Loader } from "../../Loader";
 import { ProductGallery } from "../../components/Product";
+import useProductDetails from "./useProductDetails";
 
 const ProductDetails = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [product, setProduct] = useState(null);
-  const [selectedAttributes, setSelectedAttributes] = useState({});
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    let foundProduct = null;
-    Object.values(dummyData).forEach((category) => {
-      const productMatch = category.find((p) => p.id === id);
-      if (productMatch) foundProduct = productMatch;
-    });
-
-    if (foundProduct) {
-      setProduct(foundProduct);
-      const initialAttributes = {};
-      foundProduct.attributes.forEach((attr) => {
-        initialAttributes[attr.id] = attr.items[0].id;
-      });
-      setSelectedAttributes(initialAttributes);
-    } else {
-      navigate("/");
-    }
-    setLoading(false);
-  }, [id, navigate]);
-
-  const handleAttributeSelect = (attributeId, itemId) => {
-    setSelectedAttributes((prev) => ({
-      ...prev,
-      [attributeId]: itemId,
-    }));
-  };
-
-  const handleAddToCart = () => {
-    // Add to cart logic would go here
-    console.log("Added to cart:", {
-      product,
-      selectedAttributes,
-      quantity: 1,
-    });
-  };
+  const {
+    loading,
+    handleAddToCart,
+    handleAttributeSelect,
+    product,
+    selectedAttributes,
+    price,
+    allAttributesSelected,
+  } = useProductDetails();
 
   if (loading || !product) {
     return (
@@ -56,11 +22,6 @@ const ProductDetails = () => {
       </>
     );
   }
-
-  const price = product.prices[0];
-  const allAttributesSelected = product.attributes.every(
-    (attr) => selectedAttributes[attr.id]
-  );
 
   return (
     <>
@@ -72,7 +33,7 @@ const ProductDetails = () => {
           <ProductGallery product={product} />
 
           {/* Details */}
-          <section className="lg:col-span-1 w-74">
+          <section className="lg:col-span-1 w-74 min-h-[34rem]">
             <h1 className="text-3xl font-semibold mb-8">{product.name}</h1>
 
             {product.attributes.map((attribute) => (
