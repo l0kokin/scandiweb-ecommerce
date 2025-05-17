@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { CartItem } from "../CartItem";
 
-const Cart = ({ isOpen, onClose, cartItems, updateCart }) => {
+const Cart = ({ isOpen, onClose }) => {
+  const [cartItems, setCartItems] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -17,7 +19,7 @@ const Cart = ({ isOpen, onClose, cartItems, updateCart }) => {
   const handlePlaceOrder = () => {
     // Place order logic goes here
     console.log("Order placed:", cartItems);
-    updateCart([]);
+    setCartItems([]);
     onClose();
   };
 
@@ -32,7 +34,7 @@ const Cart = ({ isOpen, onClose, cartItems, updateCart }) => {
       />
 
       {/* Cart modal */}
-      <div className="fixed top-20 right-18 h-fit w-full sm:w-96 bg-white z-50 shadow-lg overflow-y-auto">
+      <div className="fixed top-20 right-18 h-fit w-full max-w-[21rem] sm:w-96 bg-white z-50 shadow-lg overflow-y-auto">
         <div className="p-4">
           <h2 className="font-bold font-raleway">
             My Bag,{" "}
@@ -46,10 +48,11 @@ const Cart = ({ isOpen, onClose, cartItems, updateCart }) => {
               <p className="text-lg py-6 text-center">Your cart is empty</p>
             ) : (
               cartItems.map((item) => (
-                <div key={item.id} className="py-4">
-                  <h1>{item.name}</h1>
-                  {/* More info goes here */}
-                </div>
+                <CartItem
+                  item={item}
+                  cartItems={cartItems}
+                  updateCart={setCartItems}
+                />
               ))
             )}
           </div>

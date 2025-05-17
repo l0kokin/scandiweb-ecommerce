@@ -6,7 +6,6 @@ import { Cart } from "../Cart";
 
 const Header = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
 
   return (
     <>
@@ -63,12 +62,7 @@ const Header = () => {
         </div>
       </header>
 
-      <Cart
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-        cartItems={cartItems}
-        updateCart={setCartItems}
-      />
+      <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </>
   );
 };
