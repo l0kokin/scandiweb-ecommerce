@@ -1,5 +1,5 @@
 import { Header } from "../../components/Header";
-import { Loader } from "../../Loader";
+import Loader from "../../components/Loader/Loader";
 import { ProductGallery } from "../../components/Product";
 import useProductDetails from "./useProductDetails";
 
