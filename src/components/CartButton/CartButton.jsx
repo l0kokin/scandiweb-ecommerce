@@ -1,10 +1,13 @@
+import { useCart } from "../../context/CartContext";
 import { Cart } from "../icons";
 
-const CartButton = ({ handleOpenCart, itemCount }) => {
+const CartButton = ({ itemCount }) => {
+  const { isCartOpen, openCart, closeCart } = useCart();
+
   return (
     <button
       className="relative cursor-pointer"
-      onClick={handleOpenCart}
+      onClick={isCartOpen ? closeCart : openCart}
       data-testid="cart-btn"
     >
       <Cart />

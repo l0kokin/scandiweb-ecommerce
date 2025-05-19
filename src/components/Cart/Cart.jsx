@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { CartItem } from "../CartItem";
+import { useCart } from "../../context/CartContext";
 
-const Cart = ({ isOpen, onClose }) => {
+const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const { isCartOpen, closeCart } = useCart();
 
   useEffect(() => {
     const itemsCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -20,17 +22,17 @@ const Cart = ({ isOpen, onClose }) => {
     // Place order logic goes here
     console.log("Order placed:", cartItems);
     setCartItems([]);
-    onClose();
+    closeCart();
   };
 
-  if (!isOpen) return null;
+  if (!isCartOpen) return null;
 
   return (
     <>
       <div
         className="fixed inset-0 bg-overlay z-40"
         style={{ top: "5rem" }}
-        onClick={onClose}
+        onClick={closeCart}
       />
 
       {/* Cart modal */}
