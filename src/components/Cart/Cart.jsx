@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CartItem } from "../CartItem";
 import { useCart } from "../../context/CartContext";
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([]);
+  const { isCartOpen, closeCart, cartItems, updateCart } = useCart();
   const [totalItems, setTotalItems] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  const { isCartOpen, closeCart } = useCart();
 
   useEffect(() => {
     const itemsCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -21,7 +20,7 @@ const Cart = () => {
   const handlePlaceOrder = () => {
     // Place order logic goes here
     console.log("Order placed:", cartItems);
-    setCartItems([]);
+    updateCart([]);
     closeCart();
   };
 
@@ -51,9 +50,10 @@ const Cart = () => {
             ) : (
               cartItems.map((item) => (
                 <CartItem
+                  key={item.id}
                   item={item}
                   cartItems={cartItems}
-                  updateCart={setCartItems}
+                  updateCart={updateCart}
                 />
               ))
             )}
