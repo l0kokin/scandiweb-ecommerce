@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Logo from "../../assets/images/logo.png";
 import { CartButton } from "../CartButton";
-import { CartModal } from "../Cart";
+import { CartModal } from "../CartModal";
 import { useCart } from "../../context/CartContext";
 
 const Header = () => {
