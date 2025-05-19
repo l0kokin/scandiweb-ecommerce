@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import dummyData from "../Home/dummyData";
+import { useCart } from "../../context/CartContext";
 
 const useProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addToCart } = useCart();
   const [product, setProduct] = useState(null);
   const [selectedAttributes, setSelectedAttributes] = useState({});
   const [loading, setLoading] = useState(true);
@@ -37,12 +39,7 @@ const useProductDetails = () => {
   };
 
   const handleAddToCart = () => {
-    // Add to cart logic would go here
-    console.log("Added to cart:", {
-      product,
-      selectedAttributes,
-      quantity: 1,
-    });
+    addToCart(product, selectedAttributes);
   };
 
   const price = product?.prices[0];

@@ -1,36 +1,25 @@
-import { useState, useEffect } from "react";
 import { CartItem } from "../CartItem";
+import useCartModal from "./useCartModal";
 
-const Cart = ({ isOpen, onClose }) => {
-  const [cartItems, setCartItems] = useState([]);
-  const [totalItems, setTotalItems] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
+const Cart = () => {
+  const {
+    isCartOpen,
+    totalItems,
+    totalPrice,
+    handlePlaceOrder,
+    closeCart,
+    cartItems,
+    updateCart,
+  } = useCartModal();
 
-  useEffect(() => {
-    const itemsCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-    const priceTotal = cartItems.reduce(
-      (sum, item) => sum + item.product.prices[0].amount * item.quantity,
-      0
-    );
-    setTotalItems(itemsCount);
-    setTotalPrice(priceTotal);
-  }, [cartItems]);
-
-  const handlePlaceOrder = () => {
-    // Place order logic goes here
-    console.log("Order placed:", cartItems);
-    setCartItems([]);
-    onClose();
-  };
-
-  if (!isOpen) return null;
+  if (!isCartOpen) return null;
 
   return (
     <>
       <div
         className="fixed inset-0 bg-overlay z-40"
         style={{ top: "5rem" }}
-        onClick={onClose}
+        onClick={closeCart}
       />
 
       {/* Cart modal */}
@@ -43,15 +32,16 @@ const Cart = ({ isOpen, onClose }) => {
             </span>
           </h2>
 
-          <div className="divide-y divide-gray-200">
+          <div>
             {cartItems.length === 0 ? (
               <p className="text-lg py-6 text-center">Your cart is empty</p>
             ) : (
               cartItems.map((item) => (
                 <CartItem
+                  key={item.id}
                   item={item}
                   cartItems={cartItems}
-                  updateCart={setCartItems}
+                  updateCart={updateCart}
                 />
               ))
             )}

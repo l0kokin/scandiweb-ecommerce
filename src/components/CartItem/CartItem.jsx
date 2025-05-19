@@ -37,10 +37,10 @@ const CartItem = ({ item, updateCart, cartItems }) => {
                 {attr.items.map((option) => (
                   <div
                     key={option.id}
-                    className={`text-xs px-2 py-1 border ${
+                    className={`text-xs px-2 py-1 border border-black ${
                       item.selectedAttributes[attr.id] === option.id
-                        ? "bg-black text-white border-black"
-                        : "bg-white text-black border-gray-300"
+                        ? "bg-black text-white"
+                        : "bg-white text-black"
                     }`}
                     style={
                       attr.type === "swatch"
@@ -64,7 +64,7 @@ const CartItem = ({ item, updateCart, cartItems }) => {
         <div className="w-1/3 flex flex-col items-center">
           <button
             onClick={() => handleIncrease(item.id)}
-            className="w-8 h-8 border border-black flex items-center justify-center"
+            className="text-2xl font-extralight w-6 h-6 border border-black flex items-center justify-center"
             data-testid="cart-item-amount-increase"
           >
             +
@@ -74,12 +74,18 @@ const CartItem = ({ item, updateCart, cartItems }) => {
           </span>
           <button
             onClick={() => handleDecrease(item.id)}
-            className="w-8 h-8 border border-black flex items-center justify-center"
+            className="text-2xl font-extralight w-6 h-6 border border-black flex items-center justify-center"
             data-testid="cart-item-amount-decrease"
           >
             -
           </button>
         </div>
+
+        <img
+          src={item.product.gallery[0]}
+          alt={item.product.name}
+          className="w-[42%] object-cover"
+        />
       </div>
     </div>
   );

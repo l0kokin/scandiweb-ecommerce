@@ -1,15 +1,20 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Cart } from "../icons";
+import { useCart } from "../../context/CartContext";
 
 const ProductCard = ({ product, ...props }) => {
+  const { addToCart } = useCart();
   const [isHovered, setIsHovered] = useState(false);
   const price = product.prices[0];
 
   const handleAddToCart = (e) => {
     e.preventDefault();
-    // Add to cart logic
-    console.log("Added to cart:", product);
+    const defaultAttributes = {};
+    product.attributes.forEach((attr) => {
+      defaultAttributes[attr.id] = attr.items[0].id;
+    });
+    addToCart(product, defaultAttributes);
   };
 
   return (

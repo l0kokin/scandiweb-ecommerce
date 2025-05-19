@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Loader } from "../../Loader";
 import dummyProducts from "./dummyData";
 import { Header } from "../../components/Header";
 import { ProductCard } from "../../components/Product";
+import Loader from "../../components/Loader/Loader";
 
 const Home = () => {
   const { category } = useParams();

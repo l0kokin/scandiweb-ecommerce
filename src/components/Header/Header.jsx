@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
 import Logo from "../../assets/images/logo.png";
 import { CartButton } from "../CartButton";
-import { useState } from "react";
-import { Cart } from "../Cart";
+import { CartModal } from "../CartModal";
+import { useCart } from "../../context/CartContext";
 
 const Header = () => {
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { openCart, cartItems } = useCart();
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <>
@@ -58,11 +59,10 @@ const Header = () => {
           <div>
             <img src={Logo} alt="logo" />
           </div>
-          <CartButton handleOpenCart={() => setIsCartOpen(true)} />
+          <CartButton handleOpenCart={openCart} itemCount={totalItems} />
         </div>
       </header>
-
-      <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <CartModal />
     </>
   );
 };
