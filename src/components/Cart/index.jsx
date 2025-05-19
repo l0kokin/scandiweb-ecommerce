@@ -1,1 +1,1 @@
-export { default as Cart } from "./Cart.jsx";
+export { default as CartModal } from "./CartModal.jsx";

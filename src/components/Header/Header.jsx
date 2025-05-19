@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Logo from "../../assets/images/logo.png";
 import { CartButton } from "../CartButton";
-import { Cart } from "../Cart";
+import { CartModal } from "../Cart";
 import { useCart } from "../../context/CartContext";
 
 const Header = () => {
@@ -62,7 +62,7 @@ const Header = () => {
           <CartButton handleOpenCart={openCart} itemCount={totalItems} />
         </div>
       </header>
-      <Cart />
+      <CartModal />
     </>
   );
 };
