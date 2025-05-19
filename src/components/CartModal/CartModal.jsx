@@ -32,7 +32,7 @@ const Cart = () => {
             </span>
           </h2>
 
-          <div className="divide-y divide-gray-200">
+          <div>
             {cartItems.length === 0 ? (
               <p className="text-lg py-6 text-center">Your cart is empty</p>
             ) : (
