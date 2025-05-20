@@ -30,7 +30,6 @@ const useCartModal = () => {
     handlePlaceOrder,
     closeCart,
     cartItems,
-    updateCart,
   };
 };
 
