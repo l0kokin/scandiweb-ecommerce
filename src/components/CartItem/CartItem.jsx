@@ -15,30 +15,40 @@ const CartItem = ({ item }) => {
 
           {item.product.attributes.map((attr) => (
             <div key={attr.id} className="mb-2">
-              <p className="text-sm font-medium">{attr.name}:</p>
-              <div className="flex flex-wrap gap-2 mt-1">
-                {attr.items.map((option) => (
-                  <div
-                    key={option.id}
-                    className={`text-xs px-2 py-1 border border-black ${
-                      item.selectedAttributes[attr.id] === option.id
-                        ? "bg-black text-white"
-                        : "bg-white text-black"
-                    }`}
-                    style={
-                      attr.type === "swatch"
-                        ? { backgroundColor: option.value }
-                        : {}
-                    }
-                    data-testid={`cart-item-attribute-${attr.name.toLowerCase()}-${option.value.toLowerCase()}${
-                      item.selectedAttributes[attr.id] === option.id
-                        ? "-selected"
-                        : ""
-                    }`}
-                  >
-                    {attr.type !== "swatch" && option.displayValue}
-                  </div>
-                ))}
+              <h3 className="text-sm font-bold mb-2 font-roboto uppercase">
+                {attr.name}:
+              </h3>
+              <div className="flex flex-wrap gap-2 w-full">
+                {attr.items.map((option) => {
+                  const isSelected =
+                    item.selectedAttributes[attr.id] === option.id;
+                  const isColor = attr.type === "swatch";
+
+                  return (
+                    <div
+                      key={option.id}
+                      className={`
+                        ${isColor ? "w-5 h-5" : "px-2 py-0.5 border"} 
+                        ${
+                          isSelected
+                            ? isColor
+                              ? "border border-white ring ring-green"
+                              : "bg-primary text-white"
+                            : isColor
+                            ? "border border-transparent"
+                            : "border-primary"
+                        }
+                        flex items-center justify-center
+                      `}
+                      style={isColor ? { backgroundColor: option.value } : {}}
+                      data-testid={`cart-item-attribute-${attr.name.toLowerCase()}-${option.value.toLowerCase()}${
+                        isSelected ? "-selected" : ""
+                      }`}
+                    >
+                      {!isColor && option.displayValue}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           ))}
