@@ -9,7 +9,6 @@ const Cart = () => {
     handlePlaceOrder,
     closeCart,
     cartItems,
-    updateCart,
   } = useCartModal();
 
   if (!isCartOpen) return null;
@@ -36,14 +35,7 @@ const Cart = () => {
             {cartItems.length === 0 ? (
               <p className="text-lg py-6 text-center">Your cart is empty</p>
             ) : (
-              cartItems.map((item) => (
-                <CartItem
-                  key={item.id}
-                  item={item}
-                  cartItems={cartItems}
-                  updateCart={updateCart}
-                />
-              ))
+              cartItems.map((item) => <CartItem key={item.id} item={item} />)
             )}
           </div>
 

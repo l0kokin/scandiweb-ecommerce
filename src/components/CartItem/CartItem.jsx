@@ -1,24 +1,7 @@
-const CartItem = ({ item, updateCart, cartItems }) => {
-  const handleIncrease = (itemId) => {
-    updateCart(
-      cartItems.map((item) =>
-        item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
-  };
+import useCartItem from "./useCartItem";
 
-  const handleDecrease = (itemId) => {
-    const existingItem = cartItems.find((item) => item.id === itemId);
-    if (existingItem.quantity === 1) {
-      updateCart(cartItems.filter((item) => item.id !== itemId));
-    } else {
-      updateCart(
-        cartItems.map((item) =>
-          item.id === itemId ? { ...item, quantity: item.quantity - 1 } : item
-        )
-      );
-    }
-  };
+const CartItem = ({ item }) => {
+  const { handleDecrease, handleIncrease } = useCartItem();
 
   return (
     <div key={item.id} className="py-4">
