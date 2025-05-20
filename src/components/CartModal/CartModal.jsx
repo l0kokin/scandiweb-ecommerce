@@ -1,7 +1,7 @@
 import { CartItem } from "../CartItem";
 import useCartModal from "./useCartModal";
 
-const Cart = () => {
+const CartModal = () => {
   const {
     isCartOpen,
     totalItems,
@@ -16,13 +16,13 @@ const Cart = () => {
   return (
     <>
       <div
-        className="fixed inset-0 bg-overlay z-40"
+        className="fixed inset-0 bg-overlay z-40 "
         style={{ top: "5rem" }}
         onClick={closeCart}
       />
 
       {/* Cart modal */}
-      <div className="fixed top-20 right-18 h-fit w-full max-w-[21rem] sm:w-96 bg-white z-50 shadow-lg overflow-y-auto">
+      <div className="fixed top-20 right-18 h-fit w-full sm:w-96 bg-white z-50 shadow-lg overflow-y-auto">
         <div className="p-4">
           <h2 className="font-bold font-raleway">
             My Bag,{" "}
@@ -31,7 +31,7 @@ const Cart = () => {
             </span>
           </h2>
 
-          <div>
+          <div className="max-h-[50rem] overflow-y-auto scrollbar-hide">
             {cartItems.length === 0 ? (
               <p className="text-lg py-6 text-center">Your cart is empty</p>
             ) : (
@@ -61,4 +61,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartModal;
